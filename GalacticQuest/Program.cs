@@ -15,11 +15,13 @@
         {
             Console.Write("\n");
 
-            List<(string, int)> items = new List<(string, int)>() { ("Excalibur", 500), ("Tessaiga", 1000) };
-            Player player = new Player(50, 1, items);
-            //Player player = new Player(40, 2);
-            //Player player = new Player(30);
-            //Player player = new Player();
+            List<Item> items = new List<Item>()
+            {
+                new Item("Excalibur", 500, 100),
+                new Item("Tessaiga", 1000, 200)
+            };
+            Player player = new Player(50, 1, items, 50);            //Player player = new Player(40, 2);
+            
 
             player.ShowProfile();
 
@@ -37,25 +39,30 @@
                 Console.WriteLine("Select your option and press Enter: \n 1.Travel \n 2.Journal \n 3.Exit \n");
                 int.TryParse(Console.ReadLine(), out int readOption);
 
-
-                switch (readOption)
+                try
                 {
-                    case (int)GameOptions.Monsters:
-                        OpenTravelMenu();
-                        break;
+                    switch (readOption)
+                    {
+                        case (int)GameOptions.Monsters:
+                            OpenTravelMenu();
+                            break;
 
-                    case (int)GameOptions.Journal:
-                        OpenJournalMenu();
-                        break;
+                        case (int)GameOptions.Journal:
+                            OpenJournalMenu();
+                            break;
 
-                    case (int)GameOptions.Exit:
-                        isAppRunning = false;
-                        break;
+                        case (int)GameOptions.Exit:
+                            isAppRunning = false;
+                            break;
 
-                    default:
-                        Console.WriteLine("-_-' Invalid Option");
-                        break;
+                        default:
+                            throw new Exception("Invalid Option Selected");
 
+                    }
+                }
+                catch (Exception ex)
+                {
+                    Console.WriteLine($"There was an error: {ex.Message}");
                 }
             }
         }
