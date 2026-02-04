@@ -9,16 +9,9 @@ namespace GalacticQuest
         internal static Player currentPlayer = new Player(100, 10, 250);
         static void Main(string[] args)
         {
-            //Console.WriteLine("Hello, Galactic Quest!");
+            Console.WriteLine("Hello, Galactic Quest!");
 
-            IList<Monster> monsters = new List<Monster>() { new Xenotutzi("monstrulet", 100, 20), new Ignifax("MONSTRU", 30, 30) };
-            foreach (var monster in monsters)
-            {
-                monster.SpecialAttack();
-                Console.WriteLine($"Hp: {monster.Hp} | Attack: {monster.Attack}");
-            }
-
-            //OpenMainMenu();
+            OpenMainMenu();
         }
 
         internal static void OpenMainMenu()
